@@ -8,7 +8,7 @@ import axios from 'axios';
 const LoginPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
-
+  const apiUrl = 'https://law-consultancy-3.onrender.com';
   useEffect(() => {
     // Check for error in URL
     const urlParams = new URLSearchParams(window.location.search);
@@ -21,7 +21,7 @@ const LoginPage = () => {
     // Check if we have a token in cookies
     const checkAuth = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/auth/check', {
+        const response = await axios.get(`${apiUrl}/auth/check`, {
           withCredentials: true
         });
         if (response.data.authenticated) {
@@ -39,7 +39,7 @@ const LoginPage = () => {
 
   const handleGoogleAuth = () => {
     // Redirect to backend Google OAuth endpoint
-    window.location.href = 'http://localhost:3000/auth/google';
+    window.location.href = `${apiUrl}/auth/google`;
   };
 
   return (

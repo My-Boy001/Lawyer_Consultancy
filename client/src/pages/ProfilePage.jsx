@@ -7,11 +7,11 @@ import Card from '../components/Card';
 const ProfilePage = () => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-
+  const apiUrl  = 'https://law-consultancy-3.onrender.com';
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/find-user', {
+        const response = await axios.get(`${apiUrl}/find-user`, {
           withCredentials: true
         });
         setUser(response.data);

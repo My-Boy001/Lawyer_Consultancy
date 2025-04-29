@@ -6,7 +6,7 @@ class SocketService {
   }
 
   connect(userId) {
-    this.socket = io('http://localhost:3000', {
+    this.socket = io(`https://law-consultancy-3.onrender.com/`, {
       withCredentials: true,
       query: { userId }
     });

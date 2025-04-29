@@ -13,12 +13,13 @@ const ChatPage = () => {
   const messagesEndRef = useRef(null);
   const messagesContainerRef = useRef(null);
 
+  const apiUrl = "https://law-consultancy-3.onrender.com"
   // Fetch current logged-in user
   useEffect(() => {
     const fetchCurrentUser = async () => {
       try {
         setIsLoading(true);
-        const res = await axios.get("http://localhost:3000/find-user", {
+        const res = await axios.get(`${apiUrl}/find-user`, {
           withCredentials: true,
         });
         setCurrentUser(res.data);
@@ -35,7 +36,7 @@ const ChatPage = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/users", {
+        const res = await axios.get(`${apiUrl}/users`, {
           withCredentials: true,
         });
         
@@ -79,7 +80,7 @@ const ChatPage = () => {
         try {
           setIsLoading(true);
           const res = await axios.get(
-            `http://localhost:3000/chat/${selectedUser._id}?senderId=${currentUser._id}`
+            `${apiUrl}/chat/${selectedUser._id}?senderId=${currentUser._id}`
           );
           setMessages(res.data);
           setIsLoading(false);
@@ -105,7 +106,7 @@ const ChatPage = () => {
     if (!newMessage.trim()) return;
     
     try {
-      await axios.post(`http://localhost:3000/chat/send/${selectedUser._id}`, {
+      await axios.post(`${apiUrl}/chat/send/${selectedUser._id}`, {
         message: newMessage,
         senderId: currentUser._id,
       });
@@ -119,7 +120,7 @@ const ChatPage = () => {
       
       // Reload messages after sending
       const res = await axios.get(
-        `http://localhost:3000/chat/${selectedUser._id}?senderId=${currentUser._id}`
+        `${apiUrl}/chat/${selectedUser._id}?senderId=${currentUser._id}`
       );
       setMessages(res.data);
     } catch (error) {

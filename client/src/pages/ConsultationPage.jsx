@@ -13,6 +13,7 @@ const ConsultationPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const apiUrl = "https://law-consultancy-3.onrender.com"
   // Fetch consultations from the backend
   useEffect(() => {
     fetchConsultations();
@@ -22,7 +23,7 @@ const ConsultationPage = () => {
     setLoading(true);
     try {
       // Use the proper endpoint path as defined in your router
-      const response = await axios.get("http://localhost:3000/meetInfo", {
+      const response = await axios.get(`${apiUrl}/meetInfo`, {
         withCredentials: true, // Important to send cookies for authentication
       });
       

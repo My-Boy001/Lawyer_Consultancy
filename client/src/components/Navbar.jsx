@@ -14,12 +14,12 @@ const Navbar = () => {
   const [notificationOpen, setNotificationOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-
+  const apiUrl = "https://law-consultancy-3.onrender.com";
   // Fetch user info
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/find-user', {
+        const response = await axios.get(`${apiUrl}/find-user`, {
           withCredentials: true,
           headers: {
             'Content-Type': 'application/json',
@@ -89,7 +89,7 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.post('http://localhost:3000/logout', {}, {
+      await axios.post(`${apiUrl}/logout`, {}, {
         withCredentials: true
       });
       setUser(null);
